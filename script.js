@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll("button");
 const cartContainer = document.getElementById("cart");
 const totalElement = document.getElementById("total");
-const STORAGE_KEY = "shoppingCartV1";
+
 
 let cart = [];
 
