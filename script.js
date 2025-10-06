@@ -23,24 +23,39 @@ function addToCart(title, price) {
 function renderCart() {
   cartContainer.innerHTML = "";
 
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>Your cart is empty 🛒</p>";
+    totalElement.textContent = "0.00";
+    return;
+  }
+
   cart.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.classList.add("cart-item");
-
-    li.innerHTML = `
-      <span>${item.title}</span>
-      <span>$${item.price.toFixed(2)}</span>
-      <button class="remove-btn">Remove</button>
-    `;
-
-    li.querySelector(".remove-btn")
-    .addEventListener("click", () => removeFromCart(index));
-
+    const li = createCartItem(item, index);
     cartContainer.appendChild(li);
   });
 
   updateTotal();
 }
+
+function createCartItem(item, index) {
+  const li = document.createElement("li");
+  li.classList.add("cart-item");
+
+  const titleSpan = document.createElement("span");
+  titleSpan.textContent = item.title;
+
+  const priceSpan = document.createElement("span");
+  priceSpan.textContent = `$${item.price.toFixed(2)}`;
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove";
+  removeBtn.classList.add("remove-btn");
+  removeBtn.addEventListener("click", () => removeFromCart(index));
+
+  li.append(titleSpan, priceSpan, removeBtn);
+  return li;
+}
+
 
 
 function removeFromCart(index) {
