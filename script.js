@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll("button");
 const cartContainer = document.getElementById("cart");
 const totalElement = document.getElementById("total");
+const STORAGE_KEY = "shoppingCartV1";
 
 let cart = [];
 
@@ -15,6 +16,7 @@ buttons.forEach(button => {
 
 function addToCart(title, price) {
   cart.push({ title, price });
+  saveCart();
   renderCart();
 }
 
@@ -31,7 +33,8 @@ function renderCart() {
       <button class="remove-btn">Remove</button>
     `;
 
-    li.querySelector(".remove-btn").addEventListener("click", () => removeFromCart(index));
+    li.querySelector(".remove-btn")
+    .addEventListener("click", () => removeFromCart(index));
 
     cartContainer.appendChild(li);
   });
@@ -42,6 +45,7 @@ function renderCart() {
 
 function removeFromCart(index) {
   cart.splice(index, 1);
+  saveCart();
   renderCart();
 }
 
@@ -49,3 +53,17 @@ function updateTotal() {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
   totalElement.textContent = total.toFixed(2);
 }
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+} 
+  
+
+function loadCart() {
+  const savedCart = localStorage.getItem("cart");
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+  renderCart();
+  }
+}
+loadCart();
