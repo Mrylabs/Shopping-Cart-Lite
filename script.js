@@ -18,7 +18,13 @@ buttons.forEach(button => {
 });
 
 function addToCart(title, price) {
-  cart.push({ title, price });
+  const existingItem = cart.find(item => item.title === title);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+  cart.push({ title, price, quantity: 1 });
+  }
+ 
   saveCart();
   renderCart();
 }
@@ -45,11 +51,12 @@ function createCartItem(item, index) {
   li.classList.add("cart-item");
 
   const titleSpan = document.createElement("span");
-  titleSpan.textContent = item.title;
+  titleSpan.textContent = `${item.title} (x${item.quantity})`;
 
-  const price = Number(item.price) || 0;
+
   const priceSpan = document.createElement("span");
-  priceSpan.textContent = `$${item.price.toFixed(2)}`;
+  const itemTotal = item.price * item.quantity;
+  priceSpan.textContent = `$${itemTotal.toFixed(2)}`;
 
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Remove";
@@ -69,7 +76,7 @@ function removeFromCart(index) {
 }
 
 function updateTotal() {
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   totalElement.textContent = total.toFixed(2);
 }
 
