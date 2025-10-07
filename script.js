@@ -5,6 +5,9 @@ const totalElement = document.getElementById("total");
 
 let cart = [];
 
+loadCart();
+renderCart();
+
 buttons.forEach(button => {
   button.addEventListener("click", () => {
     const productDiv = button.parentElement;
@@ -44,6 +47,7 @@ function createCartItem(item, index) {
   const titleSpan = document.createElement("span");
   titleSpan.textContent = item.title;
 
+  const price = Number(item.price) || 0;
   const priceSpan = document.createElement("span");
   priceSpan.textContent = `$${item.price.toFixed(2)}`;
 
@@ -73,12 +77,7 @@ function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 } 
   
-
 function loadCart() {
   const savedCart = localStorage.getItem("cart");
-  if (savedCart) {
-    cart = JSON.parse(savedCart);
-  renderCart();
-  }
+  cart = savedCart ? JSON.parse(savedCart) : [];
 }
-loadCart();
