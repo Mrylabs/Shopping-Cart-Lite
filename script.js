@@ -93,26 +93,60 @@ function createCartItem(item, index) {
   li.classList.add("cart-item");
 
   const titleSpan = document.createElement("span");
-  titleSpan.textContent = `${item.title} ${item.quantity}`;
+  titleSpan.textContent = item.title;
+
+  const quantityContainer = document.createElement("div");
+  quantityContainer.classList.add("quantity-controls");
+
+  const minusBtn = document.createElement("button");
+  minusBtn.textContent = "-";
+  minusBtn.classList.add("quantity-btn")
+
+  const quantityText = document.createElement("span");
+  quantityText.textContent = `${item.quantity}`;
+
+  const plusBtn = document.createElement("button");
+  plusBtn.textContent = "+";
+  plusBtn.classList.add("quantity-btn");
+
 
   const priceSpan = document.createElement("span");
-  const itemTotal = item.price * item.quantity;
-  priceSpan.textContent = `$${itemTotal.toFixed(2)}`;
+  priceSpan.textContent = `${(item.price * item.quantity).toFixed(2)}`;
 
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Remove";
   removeBtn.classList.add("remove-btn");
-  removeBtn.addEventListener("click", () => removeFromCart(index));
 
-  li.append(titleSpan, priceSpan, removeBtn);
+  minusBtn.addEventListener("click", () => {
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    } else {
+      cart.splice(index, 1);
+    }
+
+    saveCart();
+    renderCart();
+});
+
+  plusBtn.addEventListener("click", () => {
+    item.quantity += 1;
+    saveCart();
+    renderCart();
+  });
+
+  removeBtn.addEventListener("click", () => {
+    cart.splice(index, 1);
+    saveCart();
+    renderCart();
+  });
+
+
+  quantityContainer.append(minusBtn, quantityText, plusBtn);
+  li.append(titleSpan, quantityContainer, priceSpan, removeBtn);
   return li;
 }
 
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  saveCart();
-  renderCart();
-}
+
 
 function updateTotal() {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
