@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amazon Products</title>
+  <title>Your Cart</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <h1>Amazon</h1>
-    <a href="cart.html">🛒 Cart</a>
+    <h1>Shopping Cart</h1>
+    <a href="index.html">← Continue Shopping</a>
   </header>
 
-  <main class="products">
-    <div id="products"></div>
-  </main>
+  <section class="cart">
+    <ul id="cart"></ul>
+    <p class="total">Total: $<span id="total">0.00</span></p>
+  </section>
 
   <footer>
     <a>Conditions of use</a>
@@ -22,7 +23,6 @@
     <p>&copy; 2023 amazon.com, All rights reserved.</p>
   </footer>
 
-  <script src="products.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
