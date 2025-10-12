@@ -19,7 +19,7 @@ function renderProducts() {
 
   products.forEach((product, index) => {
     const div = document.createElement("div");
-    div.classList.add("product");
+    div.classList.add("product-card");
 
     div.innerHTML = `
       <img src="${product.img}" alt="${product.title}">
