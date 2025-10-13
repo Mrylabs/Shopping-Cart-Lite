@@ -6,7 +6,6 @@
   <title>Your Cart</title>
   <link rel="stylesheet" href="styles.css">
   
-
 </head>
 <body>
   <header>
@@ -14,10 +13,22 @@
     <a href="index.html">← Continue Shopping</a>
   </header>
 
-  <section class="cart">
+ <section class="cart">
+  <div class="cart-items">
     <ul id="cart"></ul>
-    <p class="total">Total: $<span id="total">0.00</span></p>
-  </section>
+  </div>
+
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <p>Items: <span id="item-count">0</span></p>
+    <p>Shipping cost: <span id="shipping">$0.00</span></p>
+    <p>Total before tax: <span id="subtotal">$0.00</span></p>
+    <p>Estimated tax (10%): <span id="tax">$0.00</span></p>
+    <p class="total">Order Total: $<span id="total">0.00</span></p>
+    <button id="checkout">Proceed to Checkout</button>
+  </div>
+</section>
+
 
   <footer>
     <a>Conditions of use</a>
@@ -25,6 +36,6 @@
     <p>&copy; 2023 amazon.com, All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 </html>
