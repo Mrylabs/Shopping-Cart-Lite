@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   {
     title: "Headphones",
     price: 199,

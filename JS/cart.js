@@ -1,10 +1,12 @@
+import {getCart, saveCart} from "./cartUtils.js";
+
 const cartContainer = document.getElementById("cart");
 const totalElement = document.getElementById("total");
 
 if (cartContainer) renderCart();
 
 function renderCart() {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCart();
   cartContainer.innerHTML = "";
 
   if (cart.length === 0) {
@@ -46,17 +48,17 @@ function renderCart() {
 }
 
 function updateQuantity(index, change) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCart();
   cart[index].quantity += change;
   if (cart[index].quantity <= 0) cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart(cart);
   renderCart();
 }
 
 function removeItem(index) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = getCart();
   cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart(cart);
   renderCart();
 }
 
