@@ -49,6 +49,15 @@ header a:hover {
   color: var(--secondary);
 }
 
+.search-bar {
+  width: 60%;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 1rem 20%;
+  display: block;
+} 
+
 /* ========== Product Page Grid ========== */
 .products {
   padding: 2rem;

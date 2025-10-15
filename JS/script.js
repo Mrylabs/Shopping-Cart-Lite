@@ -1,14 +1,16 @@
 import {products} from "./products.js";
 import {getCart, saveCart} from "./cartUtils.js"
 
+const searchInput = document.getElementById("searchInput");
 const productContainer = document.getElementById("products");
 
 if (productContainer) renderProducts();
+if (searchInput) searchInput.addEventListener("input", filterProducts);
 
-function renderProducts() {
+function renderProducts(list = products) {
   productContainer.innerHTML = "";
 
-  products.forEach((product, index) => {
+  list.forEach((product, index) => {
     const div = document.createElement("div");
     div.classList.add("product-card");
 
@@ -24,6 +26,14 @@ function renderProducts() {
 
     productContainer.appendChild(div);
   });
+}
+
+function filterProducts() {
+  const searchText = searchInput.value.toLowerCase();
+  let filtered = products.filter(p =>
+    p.title.toLowerCase().includes(searchText)
+  );
+  renderProducts(filtered);
 }
 
 function addToCart(product) {
