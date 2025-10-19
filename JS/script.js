@@ -4,6 +4,7 @@ import {getCart, saveCart} from "./cartUtils.js"
 const searchInput = document.getElementById("searchInput");
 const productContainer = document.getElementById("products");
 
+
 if (productContainer) renderProducts();
 if (searchInput) searchInput.addEventListener("input", filterProducts);
 
@@ -16,13 +17,33 @@ function renderProducts(list = products) {
 
     div.innerHTML = `
       <img src="${product.img}" alt="${product.title}">
-      <h3>${product.title}</h3>
-      <p>$${product.price}</p>
+      <p>${product.title}</p>
+        <div class="stars">
+          <span class="star" data-index="0">&#9733;</span>
+          <span class="star" data-index="1">&#9733;</span>
+          <span class="star" data-index="2">&#9733;</span>
+          <span class="star" data-index="3">&#9733;</span>
+          <span class="star" data-index="4">&#9733;</span>
+        </div>
+
+      <h4>$${product.price}</h4>
       <button data-index="${index}">Add to Cart</button>
     `;
 
     const button = div.querySelector("button");
     button.addEventListener("click", () => addToCart(product));
+
+    const stars = div.querySelectorAll(".star");
+    let rating = 0;
+
+    stars.forEach((star, i) => {
+      star.addEventListener("click", () => {
+        rating = i + 1;
+        stars.forEach((s, j) => {
+          s.innerHTML = j < rating ? "&#9733;" : "&#9734;";
+        });
+      });
+    });
 
     productContainer.appendChild(div);
   });
@@ -35,6 +56,7 @@ function filterProducts() {
   );
   renderProducts(filtered);
 }
+
 
 function addToCart(product) {
   let cart = getCart();
