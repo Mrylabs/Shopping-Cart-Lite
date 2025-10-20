@@ -34,16 +34,32 @@ function renderProducts(list = products) {
     button.addEventListener("click", () => addToCart(product, button));
 
     const stars = div.querySelectorAll(".star");
-    let rating = 0;
 
+    let saveRatings = JSON.parse(localStorage.getItem("ratings")) || {};
+    let rating = saveRatings[product.title] || 0;
+
+    updateStars(stars, rating);
+    
+
+    stars.forEach((star, i) => {
+      star.addEventListener("mouseenter", () => updateStars(stars, i + 1));
+      star.addEventListener("mouseleave", () => updateStars(stars, rating));
+    });
+    
     stars.forEach((star, i) => {
       star.addEventListener("click", () => {
         rating = i + 1;
-        stars.forEach((s, j) => {
-          s.innerHTML = j < rating ? "&#9733;" : "&#9734;";
-        });
+        saveRatings[product.title] = rating;
+        localStorage.setItem("ratings", JSON.stringify(saveRatings));
+        updateStars(stars, rating);
       });
     });
+
+    function updateStars(stars, activeCount) {
+      stars.forEach((s, j) => {
+        s.innerHTML = j < activeCount ? "&#9733;" : "&#9734;";
+      });
+    }
 
     productContainer.appendChild(div);
   });
