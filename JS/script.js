@@ -31,7 +31,7 @@ function renderProducts(list = products) {
     `;
 
     const button = div.querySelector("button");
-    button.addEventListener("click", () => addToCart(product));
+    button.addEventListener("click", () => addToCart(product, button));
 
     const stars = div.querySelectorAll(".star");
     let rating = 0;
@@ -58,7 +58,24 @@ function filterProducts() {
 }
 
 
-function addToCart(product) {
+function showAddedMessage(button) {
+  if (button.parentElement.querySelector(".added-msg")) return;
+
+  const msg = document.createElement("span");
+  msg.classList.add("added-msg");
+  msg.innerHTML = `<input type="checkbox" checked> Added.`;
+
+  button.parentElement.appendChild(msg);
+
+  setTimeout(() => {
+    msg.classList.add("fade-out");
+    setTimeout(() => {
+      msg.remove();
+    }, 500);
+  }, 2000);
+}
+
+function addToCart(product, button) {
   let cart = getCart();
 
   const existingItem = cart.find(item => item.title === product.title);
@@ -69,6 +86,6 @@ function addToCart(product) {
   }
 
   saveCart(cart);
-  
-  alert(`${product.title} added to cart!`);
+  showAddedMessage(button);
+
 }
