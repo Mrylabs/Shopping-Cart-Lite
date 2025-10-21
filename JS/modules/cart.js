@@ -1,4 +1,4 @@
-import {getCart, saveCart} from "./cartUtils.js";
+import {getCart, saveCart} from "../utils/cartUtils.js";
 
 const cartContainer = document.getElementById("cart");
 const totalElement = document.getElementById("total");
