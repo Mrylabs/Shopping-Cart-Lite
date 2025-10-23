@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Cart</title>
   <link rel="stylesheet" href="styles.css">
+ <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
   
 </head>
 <body>
@@ -13,22 +15,41 @@
     <a href="index.html">← Continue Shopping</a>
   </header>
 
- <section class="cart">
+<section class="cart">
   <div class="cart-items">
     <ul id="cart"></ul>
   </div>
 
+
+<div class="cart-summary">
   <div class="order-summary">
     <h2>Order Summary</h2>
     <p>Items: <span id="item-count">0</span></p>
     <p>Shipping cost: <span id="shipping">$0.00</span></p>
-    <p>Total before tax: <span id="subtotal">$0.00</span></p>
     <p>Estimated tax (10%): <span id="tax">$0.00</span></p>
     <p class="total">Order Total: $<span id="total">0.00</span></p>
     <button id="checkout">Proceed to Checkout</button>
   </div>
-</section>
 
+  <div class="delivery-options">
+    <h2>Delivery Options</h2>
+    <label>
+      <input type="radio" name="delivery" value="standard" data-days="5" data-cost="0" checked>
+      Standard Delivery (Free, 5 days)
+    </label><br>
+    <label>
+      <input type="radio" name="delivery" value="express" data-days="2" data-cost="4.99">
+      Express Delivery ($4.99, 2 days)
+    </label><br>
+    <label>
+      <input type="radio" name="delivery" value="overnight" data-days="1" data-cost="9.99">
+      Overnight Delivery ($9.99, next day)
+    </label>
+
+    <p id="delivery-date">Estimated delivery: —</p>
+  </div>
+</div>
+</section>
 
   <footer>
     <a>Conditions of use</a>
@@ -37,5 +58,9 @@
   </footer>
 
   <script type="module" src="js/modules/cart.js"></script>
+  <!--<script type="module" src="js/testDelivery.js"></script>-->
+  <script type="module" src="js/modules/deliveryOptions.js"></script>
+
+
 </body>
 </html>

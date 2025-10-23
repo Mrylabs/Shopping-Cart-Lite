@@ -228,6 +228,7 @@ header a:hover {
   background-color: var(--primary);
 }
 
+
 /* ========== Order Summary (Right Side) ========== */
 .order-summary {
   background-color: var(--card-bg);
@@ -262,6 +263,44 @@ header a:hover {
 .order-summary button:hover {
   background-color: var(--primary-dark);
 }
+
+/* ========== Cart Summary (Right Side Container) ========== */
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: fit-content;
+}
+
+.delivery-options {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.delivery-options h2 {
+  margin-bottom: 1rem;
+}
+
+.delivery-options label {
+  display: block;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.delivery-options input[type="radio"] {
+  accent-color: var(--primary);
+  margin-right: 0.4rem;
+}
+
+.delivery-options p#delivery-date {
+  margin-top: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
 
 /* --- Responsive Cart Layout --- */
 @media (max-width: 768px) {
