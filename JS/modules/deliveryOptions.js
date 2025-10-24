@@ -1,6 +1,8 @@
 console.log("deliveryOptions loaded");
 import { saveDelivery, getDelivery } from "../utils/deliveryUtils.js";
 console.log("saveDelivery imported:", saveDelivery);
+import { updateSummary } from "./cartSummary.js";
+
 const dayjs = window.dayjs;
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -42,6 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
     radio.addEventListener("change", (e) => {
       console.log("User selected delivery:", e.target.value);
       updateDelivery(e.target);
+      updateSummary();
     });
   });
 

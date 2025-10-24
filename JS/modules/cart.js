@@ -1,4 +1,5 @@
 import {getCart, saveCart} from "../utils/cartUtils.js";
+import { updateSummary } from "./cartSummary.js";
 
 const cartContainer = document.getElementById("cart");
 const totalElement = document.getElementById("total");
@@ -45,6 +46,7 @@ function renderCart() {
   });
 
   updateTotal(cart);
+  updateSummary();
 }
 
 function updateQuantity(index, change) {
@@ -53,14 +55,18 @@ function updateQuantity(index, change) {
   if (cart[index].quantity <= 0) cart.splice(index, 1);
   saveCart(cart);
   renderCart();
+  updateSummary();
 }
+
 
 function removeItem(index) {
   let cart = getCart();
   cart.splice(index, 1);
   saveCart(cart);
   renderCart();
+  updateSummary();
 }
+
 
 function updateTotal(cart) {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
