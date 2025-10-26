@@ -1,21 +1,23 @@
 import { getDelivery } from "../utils/deliveryUtils.js";
+import { formatCurrency } from "../utils/format.js";
 
 export function updateSummary() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    localStorage.setItem("cartTotal", cartTotal.toFixed(2));
+    const cartTotalCents = cart.reduce(
+        (sum, item) => sum + item.priceCents * item.quantity, 0);
+    localStorage.setItem("cartTotalCents", cartTotalCents);
 
     const delivery = getDelivery();
-    const shipping = delivery ? delivery.cost : 0;
-    const tax = cartTotal * 0.1;
-    const total = cartTotal + shipping + tax;
+    const shippingCents = delivery ? delivery.costCents : 0;
 
-    // Update DOM
+    const taxCents = Math.round(cartTotalCents * 0.1);
+    const totalCents = cartTotalCents + shippingCents + taxCents;
+
     document.getElementById("item-count").textContent = totalItems;
-    document.getElementById("shipping").textContent = `$${shipping.toFixed(2)}`;
-    document.getElementById("tax").textContent = `$${tax.toFixed(2)}`;
-    document.getElementById("total").textContent = total.toFixed(2);
+    document.getElementById("shipping").textContent = formatCurrency(shippingCents);
+    document.getElementById("tax").textContent = formatCurrency(taxCents);
+    document.getElementById("total").textContent = formatCurrency(totalCents);
 }
 
 window.addEventListener("DOMContentLoaded", updateSummary);

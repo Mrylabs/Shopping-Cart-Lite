@@ -1,5 +1,6 @@
 import { getCart, saveCart } from "../utils/cartUtils.js";
 
+
 export function addToCart(product, button) {
   let cart = getCart();
 
@@ -7,12 +8,16 @@ export function addToCart(product, button) {
   if (existingItem) {
     existingItem.quantity += 1;
   } else {
-    cart.push({ ...product, quantity: 1 });
+  const priceCents = product.priceCents || Math.round(product.price * 100);
+   cart.push({
+    title: product.title,
+    img: product.img,
+    priceCents,
+    quantity: 1
+  });  
   }
-
   saveCart(cart);
   showAddedMessage(button);
-
 }
 
 function showAddedMessage(button) {

@@ -1,6 +1,8 @@
 import { initRating } from "./rating.js";
 import { products } from "../data/products.js";
 import { addToCart } from "./cartActions.js";
+import { formatCurrency } from "../utils/format.js";
+
 
 export function renderProducts(filteredProducts = null) {
     const container = document.getElementById("products");
@@ -23,7 +25,7 @@ export function renderProducts(filteredProducts = null) {
             <span class="star" data-index="4">&#9733;</span>
             </div>
 
-        <h4>$${product.price}</h4>
+        <h4>${formatCurrency(product.priceCents)}</h4>
         <button data-index="${index}">Add to Cart</button>
         `;
 
