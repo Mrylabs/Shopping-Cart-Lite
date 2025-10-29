@@ -3,26 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amazon Products</title>
+  <title>DigiShop — Products</title>
+
   <link rel="stylesheet" href="styles.css">
-  
 </head>
+
 <body>
-  <header>
+  <header class="site-header">
     <h1>DigiShop</h1>
-    <input type="text" id="searchInput" placeholder="Search for a product..." class="search-bar" />
-    <a href="cart.html">🛒 Cart</a>
+
+    <div class="search-container">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search for a product..." 
+        class="search-bar" 
+      />
+      <a href="cart.html" class="cart-link" title="Go to Cart">🛒 Cart</a>
+    </div>
   </header>
 
-  <main class="products" id="products"></main>
+  <main id="products" class="products"></main>
 
-  <footer>
-    <a>Conditions of use</a>
-    <a> Privacy Notice</a>
-    <p>&copy; 2023 DigiShop.com, All rights reserved.</p>
+  <footer class="site-footer">
+    <nav>
+      <a href="#">Conditions of Use</a>
+      <a href="#">Privacy Notice</a>
+    </nav>
+    <p>&copy; 2025 DigiShop.com — All rights reserved.</p>
   </footer>
 
-<script type="module" src="js/main.js"></script>
-
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

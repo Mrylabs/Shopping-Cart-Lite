@@ -33,7 +33,7 @@ export function renderProducts(filteredProducts = null) {
     button.addEventListener("click", () => addToCart(product, button));
 
     const stars = div.querySelectorAll(".star");
-    initRating(stars, product.title);
+    initRating(stars, product.id);
 
     container.appendChild(div);
   });

@@ -3,64 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Cart</title>
-  <link rel="stylesheet" href="styles.css">
- <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <title>DigiShop — Your Cart</title>
 
-  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 </head>
+
 <body>
-  <header>
+  <header class="site-header">
     <h1>Shopping Cart</h1>
-    <a href="index.html">← Continue Shopping</a>
+    <a href="index.html" class="back-link">← Continue Shopping</a>
   </header>
 
-<section class="cart">
-  <div class="cart-items">
-    <ul id="cart"></ul>
-  </div>
+  <section class="cart">
+    <div class="cart-items">
+      <ul id="cart"></ul>
+    </div>
 
+    <div class="cart-summary">
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        <p>Items: <span id="item-count">0</span></p>
+        <p>Shipping: <span id="shipping">0.00</span></p>
+        <p>Estimated tax (10%): <span id="tax">0.00</span></p>
+        <p class="total">Order Total: <span id="total">0.00</span></p>
+        <button id="checkout">Proceed to Checkout</button>
+      </div>
 
-<div class="cart-summary">
-  <div class="order-summary">
-    <h2>Order Summary</h2>
-    <p>Items: <span id="item-count">0</span></p>
-    <p>Shipping cost: <span id="shipping">0.00</span></p>
-    <p>Estimated tax (10%): <span id="tax">0.00</span></p>
-    <p class="total">Order Total: <span id="total">0.00</span></p>
-    <button id="checkout">Proceed to Checkout</button>
-  </div>
+      <div class="delivery-options">
+        <h2>Delivery Options</h2>
 
-  <div class="delivery-options">
-    <h2>Delivery Options</h2>
-    <label>
-      <input type="radio" name="delivery" value="standard" data-days="5" data-cost="0" checked>
-      Standard Delivery (Free, 5 days)
-    </label><br>
-    <label>
-      <input type="radio" name="delivery" value="express" data-days="2" data-cost="499">
-      Express Delivery ($4.99, 2 days)
-    </label><br>
-    <label>
-      <input type="radio" name="delivery" value="overnight" data-days="1" data-cost="999">
-      Overnight Delivery ($9.99, next day)
-    </label>
+        <label>
+          <input type="radio" name="delivery" value="standard" data-days="5" data-cost="0" checked>
+          Standard Delivery (Free, 5 days)
+        </label><br>
 
-    <p id="delivery-date">Estimated delivery: —</p>
-  </div>
-</div>
-</section>
+        <label>
+          <input type="radio" name="delivery" value="express" data-days="2" data-cost="499">
+          Express Delivery ($4.99, 2 days)
+        </label><br>
 
-  <footer>
-    <a>Conditions of use</a>
-    <a> Privacy Notice</a>
-    <p>&copy; 2023 DigiShop.com, All rights reserved.</p>
+        <label>
+          <input type="radio" name="delivery" value="overnight" data-days="1" data-cost="999">
+          Overnight Delivery ($9.99, next day)
+        </label>
+
+        <p id="delivery-date">Estimated delivery: —</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <nav>
+      <a href="#">Conditions of Use</a>
+      <a href="#">Privacy Notice</a>
+    </nav>
+    <p>&copy; 2025 DigiShop.com — All rights reserved.</p>
   </footer>
 
   <script type="module" src="js/modules/cart.js"></script>
-  <!--<script type="module" src="js/testDelivery.js"></script>-->
   <script type="module" src="js/modules/deliveryOptions.js"></script>
-
-
 </body>
 </html>
