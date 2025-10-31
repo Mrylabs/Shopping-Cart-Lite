@@ -41,26 +41,28 @@ This time, I built everything from scratch — applying the concepts I’d learn
 
 ## 📁 Project Structure
 
-📦 Shopping-Cart-Lite
-├── index.html
-├── cart.html
-├── styles.css
+```
+Shopping-Cart-Lite/
+├── index.html                # Homepage displaying all products
+├── cart.html                 # Cart and order summary page
+├── styles.css                # Main stylesheet
 ├── js/
 │   ├── data/
-│   │   └── products.js
+│   │   └── products.js       # Mock product data
 │   ├── modules/
-│   │   ├── cart.js
-│   │   ├── cartActions.js
-│   │   ├── cartSummary.js
-│   │   ├── deliveryOptions.js
-│   │   ├── productRenderer.js
-│   │   ├── rating.js
-│   │   └── search.js
+│   │   ├── cart.js           # Core cart logic and state handling
+│   │   ├── cartActions.js    # Functions for adding/removing items
+│   │   ├── cartSummary.js    # Generates order summary dynamically
+│   │   ├── deliveryOptions.js# Handles delivery method selection
+│   │   ├── productRenderer.js# Renders product cards to the DOM
+│   │   ├── rating.js         # Star rating system with persistence
+│   │   └── search.js         # Product search and filtering
 │   ├── utils/
-│   │   ├── cartUtils.js
-│   │   ├── deliveryUtils.js
-│   │   └── format.js
-│   └── main.js
+│   │   ├── cartUtils.js      # Helper functions for cart management
+│   │   ├── deliveryUtils.js  # Utility logic for delivery operations
+│   │   └── format.js         # Price and formatting helpers
+│   └── main.js               # Entry point, initializes the app
+```
 
 
 ---
